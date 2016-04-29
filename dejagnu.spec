@@ -4,7 +4,7 @@
 #
 Name     : dejagnu
 Version  : 1.5.3
-Release  : 9
+Release  : 10
 URL      : ftp://ftp.gnu.org/gnu/dejagnu/dejagnu-1.5.3.tar.gz
 Source0  : ftp://ftp.gnu.org/gnu/dejagnu/dejagnu-1.5.3.tar.gz
 Summary  : No detailed summary available
