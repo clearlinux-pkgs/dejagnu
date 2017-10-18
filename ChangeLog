@@ -1,6 +1,267 @@
-2016-04-15  Ben Elliston  <bje@gnu.org>
+2017-10-16  Ben Elliston  <bje@gnu.org>
 
-	* DejaGnu 1.6 released.
+	* DejaGnu 1.6.1 released.
+
+2017-10-16  Ben Elliston  <bje@gnu.org>
+
+	* NEWS: Add entry for changes since version 1.6.
+	* configure.ac (AC_INIT): Update version number.
+	* configure: Regenerate.
+	* runtest.exp (frame_version): Update version number.
+	* doc/dejagnu.texi: Likewise.
+	* doc/runtest.1: Update datestamp.
+
+2017-10-16  Ben Elliston  <bje@gnu.org>
+
+	* config.guess: Update to version 2017-09-26.
+	* config.sub: Likewise.
+
+2017-09-13  Ben Elliston  <bje@gnu.org>
+
+	* lib/framework.exp (open_logs): Set XML version to 1.1.
+	(xml_tag): Skip valid whitespace chars (0x9, 0xA, 0xD). Include
+	missing 'x' in escape sequence.
+
+2017-08-29  Ben Elliston  <bje@gnu.org>
+
+	Revert these changes:
+
+	2016-04-25  Ben Elliston  <bje@gnu.org>
+
+	* testsuite/runtest.all/utils.test: Remove unsetenv test.
+
+	2016-04-24  Ben Elliston  <bje@gnu.org>
+
+	* lib/utils.exp (unsetenv): Remove proc.
+	* doc/dejagnu.texi: Update documentation.
+	* NEWS: Update.
+
+2017-08-19  Ben Elliston  <bje@gnu.org>
+
+	* lib/framework.exp (xml_tag): Escape all of the non-printable
+	control characters (ASCII codes 1 to 31 inclusive).
+
+2017-08-18  Tom Tromey  <tom@tromey.com>
+
+	* runtest.exp: Fix --directory matching.
+
+2017-08-15  Ben Elliston  <bje@gnu.org>
+
+	* lib/framework.exp (xml_tag): New proc.
+	(log_summary): Use it.
+	(record_test): Likewise.
+
+2017-08-15  Ben Elliston  <bje@gnu.org>
+
+	* lib/framework.exp (open_logs): Set .xml filename correctly.
+	* runtest.exp: Remove xml_file_name var.
+	(usage): Update --xml option to not take an argument.
+	(load_tool_init): Likewise.
+	* doc/dejagnu.texi (Invoking runtest): Update documentation.
+	* doc/runtest.1: Likewise.
+
+2017-08-01  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp (usage): Improve --strace message.
+
+2017-08-01  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp (usage): --reboot doesn't take a 'name' parameter.
+
+2017-06-04  Ben Elliston  <bje@gnu.org>
+
+	* lib/target.exp (push_target): Remove unnecessary global command.
+	* testsuite/runtest.all/target.test: Overhaul tests.
+
+2017-06-04  Ben Elliston  <bje@gnu.org>
+
+	* testsuite/runtest.all/remote.test: Remove cruft from yesteryear.
+
+2017-06-04  Tom de Vries  <tom@codesourcery.com>
+
+	* testsuite/runtest.all/target.test: Remove list_targets test.
+
+2017-06-04  Tom de Vries  <tom@codesourcery.com>
+
+	* testsuite/runtest.all/libs.exp (process_test): Dump entire
+	output when there's no reportable output.
+	* testsuite/runtest.all/remote.test (load_lib): New proc.
+	* testsuite/runtest.all/target.test (load_lib): Same.
+
+2017-03-11  Thomas Preud'homme  <thomas.preudhomme@arm.com>
+
+	* lib/remote.exp (remote_download): Add logging message when
+	source and destination file differ in name.
+
+2016-09-04  Jan Kratochvil  <jan.kratochvil@redhat.com>
+
+	* runtest.exp: Set CCACHE_DISABLE, clear CCACHE_NODISABLE.
+
+2016-06-28  Ben Elliston  <bje@gnu.org>
+
+	* aclocal.m4, Makefile.in: Regenerate with automake 1.15.
+	* configure: Regenerate.
+
+2016-06-22  Bernhard Reutner-Fischer  <rep.dot.nop@gmail.com>
+
+	* configure.ac, dejagnu.h, runtest, runtest.exp,
+	baseboards/am33_2.0-libremote.exp, baseboards/androideabi.exp,
+	baseboards/arm-ice.exp, baseboards/arm-sid.exp,
+	baseboards/arm-sim.exp, baseboards/basic-sid.exp,
+	baseboards/basic-sim.exp, baseboards/cris-sim.exp,
+	baseboards/d30v-sim.exp, baseboards/fr30-sim.exp,
+	baseboards/frv-sim.exp, baseboards/gdbserver-sample.exp,
+	baseboards/i386-sid.exp, baseboards/iq2000-sim.exp,
+	baseboards/jmr3904-sim.exp, baseboards/linux-gdbserver.exp,
+	baseboards/linux-libremote.exp, baseboards/m68k-sid.exp,
+	baseboards/mcore-moto-sim.exp, baseboards/mcore-sim.exp,
+	baseboards/mips-lnews-sim.exp, baseboards/mips-lsi-sim.exp,
+	baseboards/mips-sim-idt32.exp, baseboards/mips-sim-idt64.exp,
+	baseboards/mips-sim-mti32.exp, baseboards/mips-sim-mti64.exp,
+	baseboards/mips-sim-mti64_64.exp,
+	baseboards/mips-sim-mti64_n32.exp, baseboards/mips-sim-sde32.exp,
+	baseboards/mips-sim-sde64.exp, baseboards/mips-sim.exp,
+	baseboards/mmixware-sim.exp, baseboards/mn10200-sim.exp,
+	baseboards/mn10300-sim.exp, baseboards/moxie-sim.exp,
+	baseboards/mt-sid.exp, baseboards/multi-sim.exp,
+	baseboards/powerpc-sim.exp, baseboards/powerpcle-sim.exp,
+	baseboards/rx-sim.exp, baseboards/sh-sid.exp,
+	baseboards/sh-sim.exp, baseboards/sparc-sim.exp,
+	baseboards/sparc64-sim.exp, baseboards/sparclite-sim-le.exp,
+	baseboards/sparclite-sim.exp, baseboards/tx39-sim.exp,
+	baseboards/unix.exp, baseboards/v850-sim.exp,
+	baseboards/visium-sim.exp, baseboards/vr4100-sim.exp,
+	baseboards/vr4111-sim.exp, baseboards/vr4300-sim.exp,
+	baseboards/xtensa-sim.exp, lib/debugger.exp, lib/dejagnu.exp,
+	lib/dg.exp, lib/ftp.exp, lib/kermit.exp, lib/remote.exp,
+	lib/rlogin.exp, lib/rsh.exp, lib/standard.exp, lib/target.exp,
+	lib/targetdb.exp, lib/telnet.exp, lib/tip.exp, lib/utils.exp,
+	testsuite/config/default.exp, testsuite/lib/libsup.exp,
+	testsuite/lib/util-defs.exp, testsuite/libdejagnu/tunit.exp,
+	testsuite/libdejagnu/unit.cc, testsuite/runtest.all/libs.exp,
+	testsuite/runtest.all/stats-sub.exp,
+	testsuite/runtest.all/stats.exp, config/adb.exp,
+	config/default.exp, config/gdb-comm.exp, config/gdb_stub.exp,
+	config/sid.exp, config/sim.exp, config/unix.exp,
+	config/vxworks.exp: Update copyright date for 2016.
+
+2016-06-22  Bernhard Reutner-Fischer  <rep.dot.nop@gmail.com>
+
+	* baseboards/aarch64-sim.exp, baseboards/am33_2.0-libremote.exp,
+	baseboards/arm-ice.exp, baseboards/arm-sid.exp,
+	baseboards/arm-sim.exp, baseboards/basic-sid.exp,
+	baseboards/basic-sim.exp, baseboards/cris-sim.exp,
+	baseboards/d30v-sim.exp, baseboards/fr30-sim.exp,
+	baseboards/frv-sim.exp, baseboards/gdbserver-sample.exp,
+	baseboards/generic-sim.exp, baseboards/i386-sid.exp,
+	baseboards/iq2000-sim.exp, baseboards/jmr3904-sim.exp,
+	baseboards/linux-gdbserver.exp, baseboards/linux-libremote.exp,
+	baseboards/m68k-sid.exp, baseboards/mcore-moto-sim.exp,
+	baseboards/mcore-sim.exp, baseboards/mips-lnews-sim.exp,
+	baseboards/mips-lsi-sim.exp, baseboards/mips-sim-idt32.exp,
+	baseboards/mips-sim-idt64.exp, baseboards/mips-sim.exp,
+	baseboards/mmixware-sim.exp, baseboards/mn10200-sim.exp,
+	baseboards/mn10300-sim.exp, baseboards/mt-sid.exp,
+	baseboards/powerpc-sim.exp, baseboards/powerpcle-sim.exp,
+	baseboards/rx-sim.exp, baseboards/sh-sid.exp,
+	baseboards/sh-sim.exp, baseboards/sparc-sim.exp,
+	baseboards/sparc64-sim.exp, baseboards/sparclite-sim-le.exp,
+	baseboards/sparclite-sim.exp, baseboards/tx39-sim.exp,
+	baseboards/unix.exp, baseboards/v850-sim.exp,
+	baseboards/vr4100-sim.exp, baseboards/vr4111-sim.exp,
+	baseboards/vr4300-sim.exp, baseboards/xtensa-sim.exp,
+	lib/debugger.exp, lib/dejagnu.exp, lib/dg.exp, lib/framework.exp,
+	lib/ftp.exp, lib/kermit.exp, lib/libgloss.exp, lib/remote.exp,
+	lib/rlogin.exp, lib/rsh.exp, lib/standard.exp, lib/target.exp,
+	lib/targetdb.exp, lib/telnet.exp, lib/tip.exp, lib/utils.exp,
+	testsuite/config/default.exp, testsuite/lib/libsup.exp,
+	testsuite/lib/util-defs.exp, testsuite/libdejagnu/tunit.exp,
+	testsuite/libdejagnu/unit.cc, testsuite/runtest.all/libs.exp,
+	testsuite/runtest.all/options.exp,
+	testsuite/runtest.all/stats-sub.exp,
+	testsuite/runtest.all/stats.exp, config/default.exp,
+	config/gdb-comm.exp, config/gdb_stub.exp, config/sid.exp,
+	config/sim.exp, config/unix.exp, config/vxworks.exp, configure.ac,
+	dejagnu.h, runtest, runtest.exp: Use condensed years in copyright
+	statement.
+
+2016-06-22  Bernhard Reutner-Fischer  <rep.dot.nop@gmail.com>
+
+	* doc/runtest.1: Use condensed years in copyright statement.
+
+2016-06-21  Bernhard Reutner-Fischer  <rep.dot.nop@gmail.com>
+
+	* runtest: Quote paths. Use test -z, -n for clarity.
+
+2016-06-21  Bernhard Reutner-Fischer  <rep.dot.nop@gmail.com>
+
+	* config/adb.exp (adb_exec) Improve verbose message.
+
+2016-06-03  Jim Wilson  <jim.wilson@linaro.org>
+
+	* baseboards/aarch64-sim.exp: New file.
+	* Makefile.am (baseboard_DATA): Add aarch64-sim.exp.
+	* Makefile.in: Regenerate.
+	* lib/libgloss.exp (libgloss_link_flags): Map aarch64* to aarch64.
+
+2016-04-26  Ben Elliston  <bje@gnu.org>
+
+	* doc/dejagnu.texi: Fill more paragraphs.
+
+2016-04-25  Ben Elliston  <bje@gnu.org>
+
+	* testsuite/runtest.all/utils.test: Remove unsetenv test.
+
+2016-04-24  Ben Elliston  <bje@gnu.org>
+
+	* lib/utils.exp (unsetenv): Remove proc.
+	* doc/dejagnu.texi: Update documentation.
+	* NEWS: Update.
+
+2016-04-19  Nick Clifton  <nickc@redhat.com>
+
+	* baseboards/msp430-sim.exp: New file.
+	* Makefile.am (baseboard_DATA): Add msp430-sim.exp.
+	* Makefile.in: Regenerate.
+
+2016-04-18  Ben Elliston  <bje@gnu.org>
+
+	* runtest: Remove quoting in final exec command.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	* lib/remote.exp: Load ssh.exp lib.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	* lib/rsh.exp (rsh_open): Fix description comment.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	Reported by shellcheck.
+	* runtest: Use $((..)) not `expr ..` and defensively double quote
+	shell variables.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (pkgdata_DATA): Add lib/ssh.exp, lib/dmucs.exp.
+	* Makefile.in: Regenerate.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	Reported by shellcheck.
+	* runtest: Use $((..)) not `expr ..`.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	* configure.ac (AC_INIT): Update version number.
+	* configure: Regenerate.
+	* runtest.exp (frame_version): Update version number.
+	* doc/dejagnu.texi: Likewise.
+
+2016-04-17  Ben Elliston  <bje@gnu.org>
+
+	* NEWS: Start a new section for the next release.
 
 2016-04-15  Ben Elliston  <bje@gnu.org>
 
@@ -100,12 +361,6 @@
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
 	* doc/runtest.1 (OPTIONS): Sort options.
-
-2016-04-03  Ben Elliston  <bje@gnu.org>
-
-	* configure.ac (AC_INIT): Set version to 1.6.
-	* configure: Regenerate.
-	* runtest.exp (frame_version): Set to 1.6.
 
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
