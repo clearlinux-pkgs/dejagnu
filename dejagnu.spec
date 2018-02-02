@@ -6,7 +6,7 @@
 #
 Name     : dejagnu
 Version  : 1.6.1
-Release  : 14
+Release  : 15
 URL      : ftp://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz
 Source0  : ftp://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz
 Source99 : ftp://ftp.gnu.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz.sig
