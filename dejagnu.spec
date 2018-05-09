@@ -6,7 +6,7 @@
 #
 Name     : dejagnu
 Version  : 1.6.1
-Release  : 16
+Release  : 17
 URL      : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz
 Source99 : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz.sig
