@@ -5,17 +5,18 @@
 # Source0 file verified with key 0x67DADC3E3F743649 (bje@air.net.au)
 #
 Name     : dejagnu
-Version  : 1.6.1
-Release  : 18
-URL      : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz
-Source0  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.1.tar.gz.sig
+Version  : 1.6.2
+Release  : 19
+URL      : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz
+Source0  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz
+Source99 : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
-Requires: dejagnu-bin
-Requires: dejagnu-data
-Requires: dejagnu-doc
+Requires: dejagnu-bin = %{version}-%{release}
+Requires: dejagnu-data = %{version}-%{release}
+Requires: dejagnu-license = %{version}-%{release}
+Requires: dejagnu-man = %{version}-%{release}
 BuildRequires : expect
 BuildRequires : tcl
 
@@ -30,7 +31,9 @@ several advantages for testing:
 %package bin
 Summary: bin components for the dejagnu package.
 Group: Binaries
-Requires: dejagnu-data
+Requires: dejagnu-data = %{version}-%{release}
+Requires: dejagnu-license = %{version}-%{release}
+Requires: dejagnu-man = %{version}-%{release}
 
 %description bin
 bin components for the dejagnu package.
@@ -47,9 +50,9 @@ data components for the dejagnu package.
 %package dev
 Summary: dev components for the dejagnu package.
 Group: Development
-Requires: dejagnu-bin
-Requires: dejagnu-data
-Provides: dejagnu-devel
+Requires: dejagnu-bin = %{version}-%{release}
+Requires: dejagnu-data = %{version}-%{release}
+Provides: dejagnu-devel = %{version}-%{release}
 
 %description dev
 dev components for the dejagnu package.
@@ -58,20 +61,37 @@ dev components for the dejagnu package.
 %package doc
 Summary: doc components for the dejagnu package.
 Group: Documentation
+Requires: dejagnu-man = %{version}-%{release}
 
 %description doc
 doc components for the dejagnu package.
 
 
+%package license
+Summary: license components for the dejagnu package.
+Group: Default
+
+%description license
+license components for the dejagnu package.
+
+
+%package man
+Summary: man components for the dejagnu package.
+Group: Default
+
+%description man
+man components for the dejagnu package.
+
+
 %prep
-%setup -q -n dejagnu-1.6.1
+%setup -q -n dejagnu-1.6.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1521068845
+export SOURCE_DATE_EPOCH=1543723633
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -83,8 +103,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1521068845
+export SOURCE_DATE_EPOCH=1543723633
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/dejagnu
+cp COPYING %{buildroot}/usr/share/package-licenses/dejagnu/COPYING
 %make_install
 
 %files
@@ -190,6 +212,13 @@ rm -rf %{buildroot}
 /usr/include/*.h
 
 %files doc
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 %doc /usr/share/info/*
-%doc /usr/share/man/man1/*
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/dejagnu/COPYING
+
+%files man
+%defattr(0644,root,root,0755)
+/usr/share/man/man1/runtest.1
