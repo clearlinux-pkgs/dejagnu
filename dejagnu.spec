@@ -6,15 +6,16 @@
 #
 Name     : dejagnu
 Version  : 1.6.2
-Release  : 20
+Release  : 21
 URL      : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz
-Source99 : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz.sig
+Source1 : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
 Requires: dejagnu-bin = %{version}-%{release}
 Requires: dejagnu-data = %{version}-%{release}
+Requires: dejagnu-info = %{version}-%{release}
 Requires: dejagnu-license = %{version}-%{release}
 Requires: dejagnu-man = %{version}-%{release}
 BuildRequires : expect
@@ -33,7 +34,6 @@ Summary: bin components for the dejagnu package.
 Group: Binaries
 Requires: dejagnu-data = %{version}-%{release}
 Requires: dejagnu-license = %{version}-%{release}
-Requires: dejagnu-man = %{version}-%{release}
 
 %description bin
 bin components for the dejagnu package.
@@ -53,18 +53,18 @@ Group: Development
 Requires: dejagnu-bin = %{version}-%{release}
 Requires: dejagnu-data = %{version}-%{release}
 Provides: dejagnu-devel = %{version}-%{release}
+Requires: dejagnu = %{version}-%{release}
 
 %description dev
 dev components for the dejagnu package.
 
 
-%package doc
-Summary: doc components for the dejagnu package.
-Group: Documentation
-Requires: dejagnu-man = %{version}-%{release}
+%package info
+Summary: info components for the dejagnu package.
+Group: Default
 
-%description doc
-doc components for the dejagnu package.
+%description info
+info components for the dejagnu package.
 
 
 %package license
@@ -85,28 +85,37 @@ man components for the dejagnu package.
 
 %prep
 %setup -q -n dejagnu-1.6.2
+cd %{_builddir}/dejagnu-1.6.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1543723633
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1573777208
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1543723633
+export SOURCE_DATE_EPOCH=1573777208
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dejagnu
-cp COPYING %{buildroot}/usr/share/package-licenses/dejagnu/COPYING
+cp %{_builddir}/dejagnu-1.6.2/COPYING %{buildroot}/usr/share/package-licenses/dejagnu/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 %make_install
 
 %files
@@ -209,15 +218,15 @@ cp COPYING %{buildroot}/usr/share/package-licenses/dejagnu/COPYING
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/dejagnu.h
 
-%files doc
+%files info
 %defattr(0644,root,root,0755)
-%doc /usr/share/info/*
+/usr/share/info/dejagnu.info
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/dejagnu/COPYING
+/usr/share/package-licenses/dejagnu/8624bcdae55baeef00cd11d5dfcfa60f68710a02
 
 %files man
 %defattr(0644,root,root,0755)
