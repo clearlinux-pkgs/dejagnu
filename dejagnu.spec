@@ -6,10 +6,10 @@
 #
 Name     : dejagnu
 Version  : 1.6.2
-Release  : 21
+Release  : 22
 URL      : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz
-Source1 : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz.sig
+Source1  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.2.tar.gz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-3.0
@@ -92,14 +92,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573777208
+export SOURCE_DATE_EPOCH=1605125316
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static
 make  %{?_smp_mflags}
@@ -109,10 +109,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1573777208
+export SOURCE_DATE_EPOCH=1605125316
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dejagnu
 cp %{_builddir}/dejagnu-1.6.2/COPYING %{buildroot}/usr/share/package-licenses/dejagnu/8624bcdae55baeef00cd11d5dfcfa60f68710a02

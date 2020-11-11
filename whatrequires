@@ -1,21 +1,19 @@
 # This file contains recursive sources that require this package
-automake
 binutils
-compat-gdbm-soname4
 findutils
 gcc
 gcc7
 gcc8
+gcc9
 gdb
 gdbm
 krb5
 libffi
-libgfortran-avx
-libgfortran-compat-soname3
-libgfortran-compat-soname4
 ltrace
+mdds
 mingw-binutils
 mingw-gcc
+modules
 procps-ng
 psmisc
-systemtap
+slurm
