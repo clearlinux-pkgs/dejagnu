@@ -1,5 +1,7 @@
 # This file contains recursive sources that require this package
 binutils
+compat-gcc-10
+compat-libffi-soname6
 findutils
 gcc
 gcc7
