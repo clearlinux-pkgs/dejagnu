@@ -6,7 +6,7 @@
 #
 Name     : dejagnu
 Version  : 1.6.3
-Release  : 24
+Release  : 25
 URL      : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
 Source0  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz
 Source1  : https://mirrors.kernel.org/gnu/dejagnu/dejagnu-1.6.3.tar.gz.sig
@@ -88,11 +88,16 @@ man components for the dejagnu package.
 cd %{_builddir}/dejagnu-1.6.3
 
 %build
+## build_prepend content
+mkdir ./clr-build
+echo -e '#!/bin/sh\n../configure "$@"' > ./clr-build/configure
+chmod +x ./clr-build/configure
+## build_prepend end
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1624051867
+export SOURCE_DATE_EPOCH=1624146000
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -101,22 +106,29 @@ export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+pushd clr-build
 %configure --disable-static
 make  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make %{?_smp_mflags} check
+# According to https://lists.gnu.org/archive/html/bug-dejagnu/2021-06/msg00010.html,
+# out-of-tree builds are better tested for running the dejagnu test suite, so
+# do that for now.
+make -C clr-build check
 
 %install
-export SOURCE_DATE_EPOCH=1624051867
+export SOURCE_DATE_EPOCH=1624146000
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/dejagnu
 cp %{_builddir}/dejagnu-1.6.3/COPYING %{buildroot}/usr/share/package-licenses/dejagnu/8624bcdae55baeef00cd11d5dfcfa60f68710a02
+pushd clr-build
 %make_install
+popd
 
 %files
 %defattr(-,root,root,-)

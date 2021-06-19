@@ -1,0 +1,4 @@
+# According to https://lists.gnu.org/archive/html/bug-dejagnu/2021-06/msg00010.html,
+# out-of-tree builds are better tested for running the dejagnu test suite, so
+# do that for now.
+make -C clr-build check

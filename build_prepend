@@ -1,0 +1,3 @@
+mkdir ./clr-build
+echo -e '#!/bin/sh\n../configure "$@"' > ./clr-build/configure
+chmod +x ./clr-build/configure
